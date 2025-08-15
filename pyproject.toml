@@ -1,0 +1,31 @@
+[project]
+name = "pybelief"
+version = "0.1.0"
+description = "Finite-frame Dempster-Shafer belief functions with sparse bitmask storage"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+authors = [{ name = "Sohaib AFIFI" }]
+keywords = [
+    "dempster-shafer",
+    "belief-functions",
+    "evidence-theory",
+    "mass-function",
+    "uncertainty",
+    "plausibility",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Mathematics",
+    "Typing :: Typed",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
