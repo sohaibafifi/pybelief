@@ -95,6 +95,13 @@ class TestJSON:
         assert "transforms" in data
         assert "pignistic" in data
 
+    def test_with_transforms_and_empty_set_mass(self):
+        m = MassFunction(FRAME, {0: 0.2, 0b001: 0.3, 0b011: 0.2, 0b111: 0.3})
+        j = to_json(m, include_transforms=True)
+        data = json.loads(j)
+        assert data["transforms"]["['a']"]["Pl"] == pytest.approx(0.8)
+        assert data["transforms"]["['a', 'b', 'c']"]["Pl"] == pytest.approx(0.8)
+
     def test_roundtrip_via_json(self, m):
         j = to_json(m)
         data = json.loads(j)

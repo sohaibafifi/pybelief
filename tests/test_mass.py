@@ -178,6 +178,15 @@ class TestTransforms:
         for s in range(fm + 1):
             assert pf[s] == pytest.approx(m.plausibility(s)), f"mismatch at {s}"
 
+    def test_plausibility_function_matches_pointwise_with_empty_set_mass(self):
+        m = MassFunction(FRAME, {0: 0.2, 0b001: 0.3, 0b011: 0.2, 0b111: 0.3})
+        fm = 0b111
+        pf = m.plausibility_function()
+        for s in range(fm + 1):
+            assert pf[s] == pytest.approx(m.plausibility(s)), f"mismatch at {s}"
+        assert pf[0] == pytest.approx(0.0)
+        assert pf[0b001] == pytest.approx(0.8)
+
     def test_commonality_function_matches_pointwise(self, m):
         cf = m.commonality_function()
         fm = 0b111

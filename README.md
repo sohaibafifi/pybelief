@@ -11,7 +11,7 @@ pip install pybelief
 ## Quick start
 
 ```python
-from pybelief import MassFunction
+from pybelief import DecisionProblem, MassFunction
 
 frame = ["a", "b", "c"]
 
@@ -39,8 +39,18 @@ m12 = m1 | m2                    # Conjunctive (TBM)
 m12 = m1.combine_yager(m2)       # Yager's rule
 
 # Decision making
-m1.pignistic()            # {'a': 0.567, 'b': 0.267, 'c': 0.167}
+dp = DecisionProblem(m1, {
+    "accept": {"a": 10, "b": 4, "c": 1},
+    "reject": {"a": 0, "b": 3, "c": 6},
+})
+dp.hurwicz(alpha=0.5)
 ```
+
+## API overview
+
+- [Mass function core](docs/mass-function.md)
+- [Decision making](docs/decision-making.md)
+- [Utilities and I/O](docs/utilities-and-io.md)
 
 ## Bitmask convention
 
@@ -62,49 +72,6 @@ You can use either bitmasks or label sets in all API calls:
 m.belief(0b011)          # bitmask
 m.belief({"a", "b"})     # label set — same result
 ```
-
-## API overview
-
-### Construction
-
-| Method | Description |
-|--------|-------------|
-| `MassFunction(frame, focal_elements={mask: mass})` | From bitmask dict |
-| `MassFunction(frame, named_focal_elements={labels: mass})` | From label-set dict |
-| `MassFunction.vacuous(frame)` | Total ignorance |
-| `MassFunction.certain(frame, element)` | All mass on one element |
-| `MassFunction.from_bayesian(frame, {label: prob})` | Probability distribution |
-
-### Transforms
-
-| Method | Description |
-|--------|-------------|
-| `m.belief(A)` | Bel(A) — sum of masses of subsets of A |
-| `m.plausibility(A)` | Pl(A) — sum of masses intersecting A |
-| `m.commonality(A)` | Q(A) — sum of masses of supersets of A |
-| `m.belief_function()` | Bel for all 2^n subsets (fast zeta) |
-| `m.plausibility_function()` | Pl for all 2^n subsets |
-| `m.commonality_function()` | Q for all 2^n subsets |
-| `m.pignistic()` | BetP probability transform |
-| `m.plausibility_transform()` | Normalized singleton plausibilities |
-
-### Operations
-
-| Method | Description |
-|--------|-------------|
-| `m1 & m2` / `m1.combine_dempster(m2)` | Dempster's rule (normalized) |
-| `m1 \| m2` / `m1.combine_conjunctive(m2)` | Conjunctive / TBM (unnormalized) |
-| `m1.combine_yager(m2)` | Yager's rule |
-| `m.discount(alpha)` | Shafer's discounting |
-| `m.condition(event)` | Dempster conditioning |
-| `m1.conflict(m2)` | Conflict mass K |
-
-### Measures
-
-| Method | Description |
-|--------|-------------|
-| `m.specificity()` | Non-specificity N(m) |
-| `m.entropy_deng()` | Deng entropy |
 
 ## Performance
 

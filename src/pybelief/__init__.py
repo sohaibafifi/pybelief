@@ -1,6 +1,7 @@
 """Finite-frame Dempster-Shafer belief functions with sparse bitmask storage."""
 
 from pybelief.mass import MassFunction
+from pybelief.decision import DecisionProblem
 from pybelief.display import (
     table,
     to_csv,
@@ -12,9 +13,9 @@ from pybelief.display import (
     credal_set_vertices,
 )
 
-__all__ = ["MassFunction"]
 __all__ = [
     "MassFunction",
+    "DecisionProblem",
     "table",
     "to_csv",
     "to_json",

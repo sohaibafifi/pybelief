@@ -292,11 +292,35 @@ class MassFunction:
     def plausibility_function(self) -> dict[int, float]:
         r"""Plausibility for every subset.
 
-        Uses :math:`Pl(A) = 1 - Bel(\bar A)` (with empty-set mass excluded).
+        Uses the direct definition
+
+        .. math::
+            Pl(A) = \sum_{B \cap A \neq \emptyset} m(B)
+
+        instead of ``1 - Bel(A^c)`` so the result remains correct when
+        ``m(\emptyset) > 0`` (e.g. for unnormalized conjunctive masses).
         """
-        bel = self.belief_function()
+        n = len(self.frame)
+        size = 1 << n
+        table = [0.0] * size
+        for mask, mass in self._m.items():
+            if mask != 0:
+                table[mask] += mass
+
+        # Subset-sum transform on non-empty masses: for each A, compute the
+        # total mass of non-empty subsets of A. Then
+        # Pl(A) = total_nonempty_mass - mass_of_nonempty_subsets(A^c).
+        nonempty_total = math.fsum(
+            mass for mask, mass in self._m.items() if mask != 0
+        )
+        for i in range(n):
+            bit = 1 << i
+            for s in range(size):
+                if s & bit:
+                    table[s] += table[s ^ bit]
+
         fm = self._frame_mask
-        return {s: 1.0 - bel[fm ^ s] for s in range(1 << len(self.frame))}
+        return {s: nonempty_total - table[fm ^ s] for s in range(size)}
 
     def commonality_function(self) -> dict[int, float]:
         r"""Commonality for every subset via the fast superset-sum transform.
