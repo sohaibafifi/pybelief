@@ -75,7 +75,7 @@ m.belief({"a", "b"})     # label set — same result
 
 ## Performance
 
-Focal elements are stored sparsely. Combination runs in O(|F1| x |F2|) — fast when mass functions are sparse. Full transforms use the fast zeta transform in O(n * 2^n). Practical for frames up to ~20 elements.
+Focal elements are stored sparsely. Combination runs in $O(|F1| \times |F2|)$, fast when mass functions are sparse. Full transforms use the fast zeta transform in $O(n * 2^n)$. Practical for frames up to ~20 elements.
 
 ## Citation
 
