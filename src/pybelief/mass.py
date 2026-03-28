@@ -472,12 +472,52 @@ class MassFunction:
         m[omega] = m.get(omega, 0.0) + k
         return MassFunction(self.frame, m)
 
+    def combine_disjunctive(self, other: MassFunction) -> MassFunction:
+        r"""Disjunctive combination: :math:`m_{12}(C) = \sum_{A\cup B=C} m_1(A)\,m_2(B)`.
+
+        Dual of the conjunctive rule.  See :func:`~pybelief.combination.combine_disjunctive`.
+        """
+        from pybelief.combination import combine_disjunctive
+        return combine_disjunctive(self, other)
+
+    def combine_dubois_prade(self, other: MassFunction) -> MassFunction:
+        r"""Dubois-Prade rule: conflict goes to the union.
+
+        See :func:`~pybelief.combination.combine_dubois_prade`.
+        """
+        from pybelief.combination import combine_dubois_prade
+        return combine_dubois_prade(self, other)
+
+    def combine_pcr6(self, other: MassFunction) -> MassFunction:
+        r"""PCR6 (Proportional Conflict Redistribution #6).
+
+        See :func:`~pybelief.combination.combine_pcr6`.
+        """
+        from pybelief.combination import combine_pcr6
+        return combine_pcr6(self, other)
+
+    def combine_cautious(self, other: MassFunction) -> MassFunction:
+        r"""Cautious conjunctive rule (Denœux): idempotent, uses min in weight domain.
+
+        See :func:`~pybelief.combination.combine_cautious`.
+        """
+        from pybelief.combination import combine_cautious
+        return combine_cautious(self, other)
+
+    def combine_bold(self, other: MassFunction) -> MassFunction:
+        r"""Bold disjunctive rule (Denœux): idempotent, uses max in weight domain.
+
+        See :func:`~pybelief.combination.combine_bold`.
+        """
+        from pybelief.combination import combine_bold
+        return combine_bold(self, other)
+
     def __and__(self, other: MassFunction) -> MassFunction:
-        """``m1 & m2`` — Dempster's rule."""
+        """``m1 & m2`` - Dempster's rule."""
         return self.combine_dempster(other)
 
     def __or__(self, other: MassFunction) -> MassFunction:
-        """``m1 | m2`` — conjunctive (TBM) combination."""
+        """``m1 | m2`` - conjunctive (TBM) combination."""
         return self.combine_conjunctive(other)
 
     def conflict(self, other: MassFunction) -> float:

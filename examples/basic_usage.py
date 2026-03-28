@@ -1,4 +1,4 @@
-"""Basic usage of pybelief — Dempster-Shafer belief functions."""
+"""Basic usage of pybelief - Dempster-Shafer belief functions."""
 
 from pybelief import MassFunction
 
@@ -18,7 +18,7 @@ m1 = MassFunction(
 print("m1:", m1)
 print()
 
-# Using bitmasks (compact — bit i = element i)
+# Using bitmasks (compact - bit i = element i)
 # {a}=0b001=1, {a,b}=0b011=3, {a,b,c}=0b111=7
 m2 = MassFunction(frame, {0b010: 0.5, 0b011: 0.2, 0b111: 0.3})
 print("m2:", m2)
@@ -51,7 +51,7 @@ print("Dempster combination (m1 & m2):")
 print(m12_dempster)
 print()
 
-# Conjunctive / TBM (unnormalized — mass on empty set = conflict)
+# Conjunctive / TBM (unnormalized - mass on empty set = conflict)
 m12_conj = m1 | m2  # shorthand for m1.combine_conjunctive(m2)
 print("Conjunctive combination (m1 | m2):")
 print(m12_conj)

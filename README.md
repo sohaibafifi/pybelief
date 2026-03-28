@@ -50,6 +50,7 @@ dp.hurwicz(alpha=0.5)
 
 - [Mass function core](docs/mass-function.md)
 - [Decision making](docs/decision-making.md)
+- [Combination rules](docs/combination-rules.md)
 - [Utilities and I/O](docs/utilities-and-io.md)
 
 ## Bitmask convention
@@ -69,8 +70,8 @@ Element *i* of the frame maps to bit *i*. For `frame = ["a", "b", "c"]`:
 You can use either bitmasks or label sets in all API calls:
 
 ```python
-m.belief(0b011)          # bitmask
-m.belief({"a", "b"})     # label set — same result
+m.belief(0b011)          # using bitmask
+m.belief({"a", "b"})     # using label set
 ```
 
 ## Performance

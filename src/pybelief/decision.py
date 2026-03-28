@@ -220,7 +220,7 @@ class DecisionProblem:
         """Return the set of maximal (non-strongly-dominated) actions.
 
         Action *a* is dominated by *b* if
-        ``E_*(u_b - u_a) > 0`` — i.e., under every compatible probability,
+        ``E_*(u_b - u_a) > 0`` - i.e., under every compatible probability,
         *b* yields strictly more than *a* in the worst case of
         their difference.
         """

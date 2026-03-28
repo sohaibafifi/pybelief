@@ -1,4 +1,4 @@
-"""Tests for pybelief.decision — decision-making under belief functions."""
+"""Tests for pybelief.decision - decision-making under belief functions."""
 
 import pytest
 from pybelief import MassFunction, DecisionProblem

@@ -1,4 +1,4 @@
-"""Tests for pybelief.display — pretty-printing, I/O, credal set."""
+"""Tests for pybelief.display - pretty-printing, I/O, credal set."""
 
 import json
 import pytest

@@ -20,9 +20,9 @@ storage.
 
 | Method | Description |
 |--------|-------------|
-| `m.belief(A)` | Bel(A) — sum of masses of subsets of A |
-| `m.plausibility(A)` | Pl(A) — sum of masses intersecting A |
-| `m.commonality(A)` | Q(A) — sum of masses of supersets of A |
+| `m.belief(A)` | Bel(A) - sum of masses of subsets of A |
+| `m.plausibility(A)` | Pl(A) - sum of masses intersecting A |
+| `m.commonality(A)` | Q(A) - sum of masses of supersets of A |
 | `m.belief_function()` | Bel for all 2^n subsets (fast zeta) |
 | `m.plausibility_function()` | Pl for all 2^n subsets |
 | `m.commonality_function()` | Q for all 2^n subsets |

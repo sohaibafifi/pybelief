@@ -2,6 +2,15 @@
 
 from pybelief.mass import MassFunction
 from pybelief.decision import DecisionProblem
+from pybelief.combination import (
+    combine_disjunctive,
+    combine_dubois_prade,
+    combine_pcr6,
+    combine_murphy,
+    combine_cautious,
+    combine_bold,
+    combine_multiple,
+)
 from pybelief.display import (
     table,
     to_csv,
@@ -16,6 +25,13 @@ from pybelief.display import (
 __all__ = [
     "MassFunction",
     "DecisionProblem",
+    "combine_disjunctive",
+    "combine_dubois_prade",
+    "combine_pcr6",
+    "combine_murphy",
+    "combine_cautious",
+    "combine_bold",
+    "combine_multiple",
     "table",
     "to_csv",
     "to_json",
