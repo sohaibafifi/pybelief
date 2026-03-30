@@ -51,6 +51,7 @@ dp.hurwicz(alpha=0.5)
 - [Mass function core](docs/mass-function.md)
 - [Decision making](docs/decision-making.md)
 - [Combination rules](docs/combination-rules.md)
+- [Distances and comparisons](docs/distances-and-comparisons.md)
 - [Utilities and I/O](docs/utilities-and-io.md)
 
 ## Bitmask convention
